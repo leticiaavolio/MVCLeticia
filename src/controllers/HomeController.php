@@ -17,4 +17,11 @@ class HomeController extends Controller {
         var_dump($args);
     }
 
+    public function fimdi()
+    {
+        //aparecer imagem
+        //echo "Graças a Deus, é Sexta-feira!!!!!!";
+        $this->render('fimdi');
+    }
+
 }
