@@ -14,12 +14,12 @@
     <h2>LEMBRETES</h2>
     <p>Sou a página principal de lembretes.</p>
     <!--  estrutura de repetição  -->
+      <?php foreach ($lembretes as $lembrete):?>
     <div>
-    <p>Título</p>
-    <span>um título</span>
-    <p>Descrição</p>
-    <span>uma descrição</span>
+    <h3>Título => <?= $lembrete['titulo']?></h3>
+    <p>Descrição: <?= $lembrete['corpo']?></p>
     </div>
+    <?php endforeach?>
     <?php $render('footer');?>
 </body>
 </html>

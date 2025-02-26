@@ -31,8 +31,28 @@ class LembretesController extends Controller
 
         echo "Você chegou na página indivual dos lembretes e selecionou o lembrete de número " . $params['id'];
 
-        $lembretes = [["id" => 1, "titulo" => "Pagar Conta", "corpo" => "Pagar aluguel todo dia 10"], ["id" => 2, "titulo" => "Estudar", "corpo" => "Lição de casa de matemática"], ["id" => 3, "titulo" => "Encontro", "corpo" => "Encontro do grupinho maravilha no Botequim"]];
+        $lembretes = [["id" => 1, "titulo" => "Pagar Conta", "corpo" => "Pagar aluguel todo dia 10"], ["id" => 2, "titulo" => "Estudar", "corpo" => "Lição de casa de matemática"], ["id" => 3, "titulo" => "Encontro", "corpo" => "Encontro do grupinho maravilha no Botequim"],["id" => 4, "titulo" => "Exercícios", "corpo" => "Caminhar 5 da manhã"]];
 
         $this->render('lembretes', ["user" => $user, "perfil" => $perfil, "lembretes" => $lembretes]);
+    }
+    public function add()
+    {
+        $this->render('adicionar');
+    }
+
+    public function addAction()
+    {
+        $varTitulo = filter_input(INPUT_POST,'titulo');
+        $varCorpo = filter_input(INPUT_POST,'corpo');
+
+        if ($varTitulo && $varCorpo) {
+            //o model que envia os dados para o bd
+            //a chave deve coincidir com o nome dos campos/colunas da tabela do bd
+           $dados = Lembrete::insert(["tituloLembrete"=>$varTitulo, "corpoLembrete"=>$varCorpo])->execute();
+           $this->redirect('/');
+        }
+        else{
+            $this->redirect('/lembretes/novo');
+        }
     }
 }

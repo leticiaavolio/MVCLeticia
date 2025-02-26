@@ -10,7 +10,7 @@ class Model {
     protected static $_h;
     
     public function __construct() {
-        // self::_checkH();
+        self::_checkH();
     }
 
     public static function _checkH() {
